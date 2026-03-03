@@ -9,292 +9,606 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0a1a2f 0%, #1a2f3f 100%);
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path fill="white" d="M10 50 Q 30 30, 50 50 T 90 50" stroke="white" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="3" fill="white"/><circle cx="80" cy="80" r="3" fill="white"/></svg>');
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
-            background: #ffffff;
-            border-radius: 30px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Header com efeito glassmorphism */
+        header {
+            background: linear-gradient(135deg, #1a2f3f 0%, #162b3a 100%);
+            color: white;
+            padding: 50px 40px 40px 40px;
+            text-align: center;
+            border-bottom: 8px solid;
+            border-image: linear-gradient(90deg, #e67e22, #f39c12, #e67e22) 1;
+            position: relative;
             overflow: hidden;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #0a2a44 0%, #1a3a5f 100%);
-            color: white;
-            padding: 40px 40px 30px 40px;
-            text-align: center;
-            border-bottom: 5px solid #e67e22;
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         header h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            animation: fadeInDown 0.8s ease;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            color: white;
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
         }
 
         header p {
-            font-size: 1.3em;
+            font-size: 1.4em;
             opacity: 0.95;
-            font-style: italic;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            font-weight: 300;
+            letter-spacing: 1px;
             color: #f0f0f0;
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Abas (Tabs) */
+        /* Abas com design mais moderno */
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            background: #2c3e50;
-            padding: 0 20px;
-            gap: 2px;
+            background: #1e2f3d;
+            padding: 0 25px;
+            gap: 3px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .tab-button {
-            padding: 15px 20px;
-            background: #34495e;
+            padding: 18px 25px;
+            background: transparent;
             border: none;
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: 600;
-            color: white;
+            color: #a0b8cc;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 8px 8px 0 0;
-            margin-top: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px 12px 0 0;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e67e22, #f39c12);
+            transition: width 0.3s ease;
         }
 
         .tab-button:hover {
-            background: #3d566e;
-            color: #f39c12;
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .tab-button:hover::before {
+            width: 80%;
         }
 
         .tab-button.active {
             background: white;
-            color: #2c3e50;
-            border-bottom: 3px solid #e67e22;
+            color: #1e2f3d;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Conteúdo das Abas */
+        .tab-button.active::before {
+            width: 80%;
+            height: 4px;
+        }
+
+        /* Conteúdo com animações */
         .tab-content {
-            padding: 40px;
+            padding: 50px;
             background: white;
-            min-height: 500px;
+            min-height: 600px;
         }
 
         .tab-pane {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tab-pane.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Tipografia */
+        /* Tipografia melhorada */
         h2 {
-            color: #0a2a44;
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            border-left: 8px solid #e67e22;
-            padding-left: 20px;
+            color: #1e2f3d;
+            font-size: 2.6em;
+            margin-bottom: 30px;
+            border-left: 12px solid;
+            border-image: linear-gradient(180deg, #e67e22, #f39c12) 1;
+            padding-left: 25px;
             font-weight: 700;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
         }
 
         h3 {
-            color: #1e3a5f;
-            font-size: 1.6em;
-            margin: 30px 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 i {
+            font-size: 2rem;
+            color: #e67e22;
         }
 
         h4 {
-            color: #2c3e50;
-            font-size: 1.3em;
+            color: #1e2f3d;
+            font-size: 1.4em;
             margin: 20px 0 10px 0;
             font-weight: 600;
         }
 
         p {
-            line-height: 1.8;
+            line-height: 1.9;
             color: #2c3e50;
-            font-size: 1.1em;
+            font-size: 1.15em;
             margin-bottom: 20px;
         }
 
         ul, ol {
-            margin: 20px 0;
+            margin: 25px 0;
             padding-left: 40px;
         }
 
         li {
-            margin: 12px 0;
-            font-size: 1.1em;
+            margin: 15px 0;
+            font-size: 1.15em;
             color: #2c3e50;
-            line-height: 1.6;
+            line-height: 1.7;
+            position: relative;
         }
 
         li strong {
-            color: #c0392b;
+            color: #e67e22;
             font-weight: 700;
         }
 
+        /* Cards melhorados com efeitos 3D */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
         .card {
-            background: #f8faff;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #e67e22;
-            transition: transform 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8faff);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid #e67e22;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(230,126,34,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 45px rgba(230,126,34,0.2), 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .card h4 {
-            color: #0a2a44;
-            font-size: 1.4em;
-            margin-bottom: 15px;
+            color: #1e2f3d;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .card p, .card li {
             color: #2c3e50;
         }
 
+        /* Badge com animação */
         .badge {
-            background: #e67e22;
+            background: linear-gradient(135deg, #e67e22, #f39c12);
             color: white;
-            padding: 5px 15px;
-            border-radius: 25px;
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: 0.9em;
+            font-size: 1em;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(230,126,34,0.3);
+            animation: pulse 2s infinite;
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Highlight box com efeito glass */
         .highlight-box {
-            background: #eef5ff;
-            padding: 30px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 8px solid #e67e22;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: linear-gradient(145deg, #eef5ff, #e0eaff);
+            padding: 40px;
+            border-radius: 30px;
+            margin: 40px 0;
+            border: 2px solid rgba(230,126,34,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '📋';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 120px;
+            opacity: 0.05;
+            transform: rotate(-15deg);
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
         }
 
         .highlight-box p, .highlight-box li {
-            color: #1e3a5f;
+            color: #1e2f3d;
         }
 
-        /* Seção do Autor */
+        /* Atividades práticas com design mais atraente */
+        .atividades-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 35px;
+            border-radius: 30px;
+            margin: 50px 0;
+            border: 3px dashed #27ae60;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(39,174,96,0.2);
+        }
+
+        .atividades-box::before {
+            content: '🎭';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 120px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .atividades-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 70%, rgba(255,255,255,0.3) 100%);
+            pointer-events: none;
+        }
+
+        .atividades-box h4 {
+            color: #27ae60;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .atividades-box ul, .atividades-box ol {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .atividades-box li {
+            background: white;
+            margin: 15px 0;
+            padding: 20px 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid #27ae60;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        .atividades-box li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(39,174,96,0.3);
+        }
+
+        .atividades-box li strong {
+            color: #27ae60;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Simulação box com efeito especial */
+        .simulacao-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 40px;
+            border-radius: 30px;
+            margin: 50px 0;
+            border: 4px solid #e67e22;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(230,126,34,0.3);
+        }
+
+        .simulacao-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .simulacao-box h4 {
+            color: #e67e22;
+            font-size: 2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .simulacao-box p {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #d35400;
+        }
+
+        .simulacao-box ul {
+            background: rgba(255,255,255,0.7);
+            padding: 25px 35px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .simulacao-box li {
+            margin: 15px 0;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* Timeline para etapas */
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .timeline-item {
+            padding: 25px 35px;
+            background: white;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-left: 8px solid;
+            border-image: linear-gradient(180deg, #e67e22, #f39c12) 1;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02) translateX(10px);
+            box-shadow: 0 15px 35px rgba(230,126,34,0.2);
+        }
+
+        .timeline-item strong {
+            color: #e67e22;
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Seção do Autor com design premium */
         .author-section {
             display: flex;
             align-items: center;
-            gap: 30px;
-            background: linear-gradient(135deg, #f0f5fa 0%, #e6ecf5 100%);
-            border-radius: 50px;
-            padding: 30px 40px;
-            margin-top: 50px;
-            border: 1px solid #cbd5e0;
+            gap: 50px;
+            background: linear-gradient(135deg, #1e2f3d, #2c3e50);
+            border-radius: 80px;
+            padding: 50px 60px;
+            margin-top: 70px;
+            border: 4px solid #e67e22;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .author-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
         }
 
         .author-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #0a2a44, #1a3a5f);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #e67e22, #f39c12);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3em;
+            font-size: 4.5em;
             font-weight: bold;
             color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border: 4px solid #e67e22;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 5px rgba(255,255,255,0.2);
+            border: 5px solid white;
+            position: relative;
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .author-info {
+            position: relative;
+            z-index: 2;
+            flex: 1;
         }
 
         .author-info h3 {
-            margin: 0 0 10px 0;
-            color: #0a2a44;
+            margin: 0 0 15px 0;
+            color: white;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .author-info p {
-            margin: 5px 0;
-            font-size: 1.1em;
-            color: #2c3e50;
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
         }
 
-        /* Responsividade */
+        .author-info strong {
+            color: #f39c12;
+        }
+
+        .author-info em {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1em;
+            display: block;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        /* Responsividade melhorada */
+        @media (max-width: 1024px) {
+            header h1 { font-size: 2.5em; }
+            .tabs { padding: 0 15px; }
+            .tab-button { padding: 15px 18px; font-size: 0.9em; }
+        }
+
         @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .tab-button {
-                border-radius: 8px;
-                margin: 2px 0;
-            }
-            
-            .author-section {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            
-            h2 {
-                font-size: 1.8em;
-            }
+            .tabs { flex-direction: column; align-items: stretch; padding: 10px; }
+            .tab-button { border-radius: 12px; margin: 3px 0; }
+            .author-section { flex-direction: column; text-align: center; padding: 40px 30px; }
+            .author-avatar { width: 140px; height: 140px; font-size: 3.5em; }
+            h2 { font-size: 2em; }
+            .tab-content { padding: 30px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header simplificado -->
+        <!-- Header melhorado -->
         <header>
             <h1>📋 UFCD 7266 – Gestão e Tratamento das Reclamações</h1>
-            <p>Curso: Técnico/a de Gestão Desportiva | 25h | Turma: 12ºGD | Ano Letivo: 2025/2026</p>
+            <p>Curso Técnico/a de Gestão Desportiva | 25 Horas | Turma 12ºGD | 2025/2026</p>
         </header>
 
-        <!-- Abas de Navegação -->
+        <!-- Abas com design melhorado (PROJETO REMOVIDO) -->
         <div class="tabs">
             <button class="tab-button active" onclick="openTab(event, 'cliente')">🙋 Cliente</button>
             <button class="tab-button" onclick="openTab(event, 'etapas')">📋 Etapas</button>
@@ -304,239 +618,439 @@
             <button class="tab-button" onclick="openTab(event, 'legislacao')">⚖️ Legislação</button>
             <button class="tab-button" onclick="openTab(event, 'fidelizacao')">❤️ Fidelização</button>
             <button class="tab-button" onclick="openTab(event, 'conflito')">⚡ Conflito</button>
-            <button class="tab-button" onclick="openTab(event, 'projeto')">🎯 Projeto</button>
             <button class="tab-button" onclick="openTab(event, 'autor')">👤 Autor</button>
         </div>
 
-        <!-- Conteúdo das Abas -->
+        <!-- Conteúdo melhorado com todas as atividades (PROJETO REMOVIDO) -->
         <div class="tab-content">
-            <!-- Aba Cliente e Reclamação (ativa por padrão) -->
+            <!-- ABA CLIENTE -->
             <div id="cliente" class="tab-pane active">
                 <h2>🙋 A Reclamação e o Cliente</h2>
-                <p>Compreender o fenómeno da reclamação é o primeiro passo para uma gestão eficaz. Uma reclamação é uma oportunidade de melhoria disfarçada.</p>
+                <p class="badge">🎯 O cliente no centro da gestão</p>
+                <p>Compreender o fenómeno da reclamação é o primeiro passo para uma gestão eficaz. Uma reclamação é uma oportunidade de melhoria disfarçada. Quando um cliente reclama, está a dar-nos a oportunidade de corrigir algo que correu mal e de o fidelizar.</p>
                 
-                <h3>📌 Conteúdos</h3>
-                <ul>
-                    <li><strong>Conteúdo da reclamação:</strong> O que o cliente expressa (factos, emoções, expectativas)</li>
-                    <li><strong>Tipos de reclamação:</strong> Explícitas, implícitas, por ação ou omissão</li>
-                    <li><strong>Razões de insatisfação:</strong> Falhas no serviço, comunicação, instalações, preços</li>
-                    <li><strong>Sinais de descontentamento:</strong> Linguagem corporal, tom de voz, palavras usadas</li>
-                    <li><strong>Modos de comunicação:</strong> Presencial, telefone, livro de reclamações, e-mail, redes sociais</li>
-                    <li><strong>Tipologias de clientes:</strong> Agressivo, passivo, indeciso, comunicativo, racional</li>
-                </ul>
+                <h3>📌 Conteúdos Fundamentais</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📝 Conteúdo da reclamação</h4>
+                        <p>O que o cliente expressa: factos objetivos, emoções (frustração, raiva, deceção), expectativas não satisfeitas e necessidades que não foram atendidas.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🔍 Tipos de reclamação</h4>
+                        <p>Explícitas (ditas diretamente), implícitas (nas entrelinhas), por ação (algo que aconteceu) ou omissão (algo que não aconteceu), individuais ou coletivas.</p>
+                    </div>
+                    <div class="card">
+                        <h4>😠 Razões de insatisfação</h4>
+                        <p>Falhas no serviço prestado, má comunicação, más condições das instalações, preços desajustados, atendimento inadequado, equipamentos avariados ou insuficientes.</p>
+                    </div>
+                    <div class="card">
+                        <h4>👀 Sinais de descontentamento</h4>
+                        <p>Linguagem corporal fechada, tom de voz alterado, expressões faciais de irritação, palavras com carga negativa, silêncios prolongados, suspiros.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📱 Modos de comunicação</h4>
+                        <p>Presencial (cara a cara), telefónico, livro de reclamações físico ou eletrónico, e-mail, redes sociais (Facebook, Instagram), chat online, aplicações móveis.</p>
+                    </div>
+                    <div class="card">
+                        <h4>👥 Tipologias de clientes</h4>
+                        <p>Agressivo (explosivo), passivo (calado mas insatisfeito), indeciso (não sabe o que quer), comunicativo (fala abertamente), racional (baseia-se em factos), emocional (guiado pelos sentimentos).</p>
+                    </div>
+                </div>
 
                 <h3>🧠 Empatia e Assertividade</h3>
-                <p>A empatia é a capacidade de se colocar no lugar do cliente, compreendendo os seus sentimentos. A assertividade permite expressar a posição da organização sem ser agressivo nem passivo.</p>
-                
-                <div class="card-grid">
-                    <div class="card">
-                        <h4>🤝 Empatia</h4>
-                        <p>"Compreendo que esteja frustrado com a situação. Vou ajudar a resolver o problema."</p>
-                    </div>
-                    <div class="card">
-                        <h4>💪 Assertividade</h4>
-                        <p>"Entendo o seu ponto de vista. Deixe-me explicar a nossa política e o que podemos fazer por si."</p>
-                    </div>
+                <div class="highlight-box">
+                    <p><strong>Empatia:</strong> Capacidade de se colocar no lugar do cliente, compreendendo os seus sentimentos e perspetiva sem julgar. É a base para criar uma conexão genuína.</p>
+                    <p><strong>Assertividade:</strong> Expressar a posição da organização de forma clara, direta e respeitosa, sem ser agressivo nem passivo, mantendo o equilíbrio entre os direitos do cliente e os da organização.</p>
+                </div>
+
+                <!-- ATIVIDADES PRÁTICAS MELHORADAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>🧠 Brainstorming Criativo</strong>
+                            Em grupo, identificar todas as reclamações que podem surgir num clube desportivo: mensalidades (valores, cobranças), horários (incompatíveis, alterações), instalações (limpeza, temperatura, espaço), equipamentos (avariados, insuficientes), atendimento (simpatia, eficiência), segurança, estacionamento, eventos, comunicação.
+                        </li>
+                        <li>
+                            <strong>📊 Análise de Casos Reais</strong>
+                            Discussão em grupo de situações concretas: cliente que reclama de mensalidade indevida, atleta insatisfeito com horários dos treinos, utente que se queixa das más condições dos balneários, reclamação sobre equipamentos avariados há semanas.
+                        </li>
+                        <li>
+                            <strong>🎭 Jogo de Papéis (Role-Play)</strong>
+                            Simulação de atendimento a diferentes perfis de clientes: agressivo (grita e acusa), passivo (fala baixo e não se afirma), indeciso (não sabe o que quer), emocional (chora ou fica muito afetado), racional (apresenta factos). Cada aluno pratica técnicas de comunicação adequadas a cada perfil.
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Aba Etapas da Reclamação -->
+            <!-- ABA ETAPAS -->
             <div id="etapas" class="tab-pane">
                 <h2>📋 Etapas da Reclamação</h2>
+                <p class="badge">⚡ Processo completo de atendimento</p>
                 
-                <h3>Processo Completo de Atendimento</h3>
-                <ol>
-                    <li><strong>Acolhimento:</strong> Receber o cliente com calma e atenção</li>
-                    <li><strong>Escuta ativa:</strong> Ouvir sem interromper, demonstrar interesse</li>
-                    <li><strong>Compreensão:</strong> Identificar o problema real e as emoções envolvidas</li>
-                    <li><strong>Pedido de desculpas:</strong> Mesmo que não seja culpa direta, lamentar o sucedido</li>
-                    <li><strong>Solução:</strong> Apresentar opções viáveis e negociar</li>
-                    <li><strong>Acompanhamento:</strong> Garantir que a solução foi eficaz</li>
-                </ol>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>1. Acolhimento</strong>
+                        <p>Receber o cliente com calma, atenção e postura aberta. Cumprimentar adequadamente, convidar a sentar-se se possível, criar um ambiente de confiança desde o primeiro momento. A primeira impressão é crucial.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2. Escuta ativa</strong>
+                        <p>Ouvir sem interromper, demonstrar interesse genuíno através de linguagem corporal positiva (acenos, contacto visual), fazer pequenas anotações se necessário, mostrar que está a absorver a informação. Deixar o cliente desabafar.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>3. Compreensão</strong>
+                        <p>Identificar o problema real, as emoções envolvidas e as expectativas do cliente. Fazer perguntas de clarificação: "Se percebi bem, o que aconteceu foi...", "Pode explicar melhor esta parte?". Confirmar se entendeu corretamente.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>4. Pedido de desculpas</strong>
+                        <p>Mesmo que não seja culpa direta da pessoa que atende, pedir desculpas de forma sincera pelo sucedido. Validar os sentimentos do cliente: "Compreendo que esteja frustrado, qualquer um estaria". Não dar desculpas esfarrapadas.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>5. Solução</strong>
+                        <p>Apresentar opções viáveis para resolver o problema, negociar quando necessário e garantir que a solução vai ao encontro das necessidades do cliente. Se não tiver autonomia, pedir ajuda a um superior. Ser claro sobre prazos e próximos passos.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>6. Acompanhamento</strong>
+                        <p>Garantir que a solução foi implementada e que o cliente ficou satisfeito. Contactar posteriormente (telefone, email) para confirmar que está tudo bem. Isto demonstra preocupação genuína e aumenta a fidelização.</p>
+                    </div>
+                </div>
+
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>📞 Simulações de Atendimento Presencial e Telefónico</strong>
+                            Praticar o processo completo de reclamação em cenários realistas: cliente insatisfeito com mensalidade que foi cobrada duas vezes, reclamação sobre equipamentos avariados que impedem a prática desportiva, cancelamento de última hora de um evento/treino importante. Aplicar todas as 6 etapas.
+                        </li>
+                        <li>
+                            <strong>🧍 Exercícios de Linguagem Corporal</strong>
+                            Identificar e praticar posturas adequadas: contacto visual direto mas não intimidatório, posição das mãos aberta, expressão facial de interesse, distanciamento adequado (não invasivo), inclinação ligeira para a frente, tom de voz calmo e pausado.
+                        </li>
+                        <li>
+                            <strong>💬 Construção de Frases Assertivas</strong>
+                            Criar e praticar frases para situações delicadas: "Compreendo a sua frustração e vamos resolver esta situação", "Peço desculpa pelo incómodo, deixe-me ver o que posso fazer", "Vamos encontrar a melhor solução para si", "O que podemos fazer neste momento é...", "Fique descansado que vou acompanhar pessoalmente este caso".
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Aba Comunicação Eficaz -->
+            <!-- ABA COMUNICAÇÃO -->
             <div id="comunicacao" class="tab-pane">
                 <h2>💬 Comunicação Eficaz</h2>
+                <p class="badge">🎯 A chave para o sucesso no atendimento</p>
                 
-                <h3>📢 Comunicação Verbal e Não Verbal</h3>
                 <div class="card-grid">
                     <div class="card">
-                        <h4>🗣️ Verbal</h4>
+                        <h4>🗣️ Comunicação Verbal</h4>
                         <ul>
-                            <li>Tom calmo e pausado</li>
-                            <li>Palavras positivas ("vamos resolver")</li>
-                            <li>Evitar termos técnicos</li>
+                            <li><strong>Tom de voz:</strong> Calmo, pausado, com variação adequada (não monótono)</li>
+                            <li><strong>Palavras positivas:</strong> "Vamos resolver", "Vou ajudar", "É possível"</li>
+                            <li><strong>Evitar:</strong> Termos técnicos, gíria, palavras negativas ("não posso", "é impossível")</li>
+                            <li><strong>Linguagem clara:</strong> Frases curtas, objetivas, sem rodeios</li>
+                            <li><strong>Adaptação:</strong> Ao nível de conhecimento e perfil do cliente</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h4>👥 Não Verbal</h4>
+                        <h4>👥 Comunicação Não Verbal</h4>
                         <ul>
-                            <li>Contacto visual adequado</li>
-                            <li>Postura aberta (braços descruzados)</li>
-                            <li>Acenos de compreensão</li>
+                            <li><strong>Contacto visual:</strong> Direto mas não fixo, demonstrando interesse</li>
+                            <li><strong>Postura:</strong> Aberta (braços descruzados), ligeiramente inclinada para a frente</li>
+                            <li><strong>Expressão facial:</strong> Adequada ao contexto, sorriso genuíno quando apropriado</li>
+                            <li><strong>Gestos:</strong> Moderados, abertos, que acompanham a fala</li>
+                            <li><strong>Acenos:</strong> De compreensão para mostrar que está a acompanhar</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>👂 Técnicas de Escuta Ativa</h4>
+                        <ul>
+                            <li><strong>Parafrasear:</strong> "Se percebi bem, o que está a dizer é que..."</li>
+                            <li><strong>Resumir:</strong> "Então, deixe-me ver se entendi: os pontos principais são..."</li>
+                            <li><strong>Validar sentimentos:</strong> "Compreendo que isso o tenha deixado chateado"</li>
+                            <li><strong>Perguntas abertas:</strong> "Pode contar-me mais sobre o que aconteceu?"</li>
+                            <li><strong>Silêncio ativo:</strong> Dar tempo para o cliente pensar e completar o raciocínio</li>
                         </ul>
                     </div>
                 </div>
 
-                <h3>🎯 Técnicas de Escuta Ativa</h3>
-                <ul>
-                    <li><strong>Parafrasear:</strong> "Se percebi bem, o que está a dizer é que..."</li>
-                    <li><strong>Resumir:</strong> "Então, os pontos principais são..."</li>
-                    <li><strong>Validar sentimentos:</strong> "Compreendo que isso o tenha deixado chateado."</li>
-                    <li><strong>Perguntas abertas:</strong> "Pode contar-me mais sobre o que aconteceu?"</li>
-                </ul>
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>📞 Simulações de Atendimento</strong>
+                            Aplicar técnicas de escuta ativa em cenários variados: cliente agressivo (como acalmar), cliente emocional (como validar sentimentos), cliente confuso (como clarificar), cliente apressado (como ser objetivo), cliente desconfiado (como gerar confiança).
+                        </li>
+                        <li>
+                            <strong>🧍 Exercícios de Linguagem Corporal</strong>
+                            Praticar posturas e expressões adequadas em frente ao espelho ou com colegas. Gravar vídeos e analisar. Identificar erros comuns: braços cruzados, olhar desviado, expressão facial de tédio, gestos excessivos ou agressivos.
+                        </li>
+                        <li>
+                            <strong>✍️ Construção de Frases Assertivas</strong>
+                            Para situações delicadas: recusas ("Infelizmente não é possível, mas podemos..."), impossibilidades ("Não consigo fazer isso, no entanto posso..."), atrasos ("Peço desculpa pelo atraso, a situação deve-se a..."), erros da organização ("Reconhecemos o erro e já estamos a corrigir..."), pedidos impossíveis ("Não podemos fazer exatamente isso, mas temos estas alternativas...").
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Aba Sistema de Gestão -->
+            <!-- ABA SISTEMA -->
             <div id="sistema" class="tab-pane">
                 <h2>⚙️ Sistema de Gestão de Reclamações</h2>
+                <p class="badge">🏗️ Estruturação do processo interno</p>
                 
-                <h3>🏗️ Como Estruturar um Processo Interno</h3>
-                <ol>
-                    <li><strong>Registo:</strong> Todas as reclamações devem ser registadas (data, cliente, motivo)</li>
-                    <li><strong>Categorização:</strong> Por tipo (instalações, atendimento, faturação, etc.)</li>
-                    <li><strong>Responsável:</strong> Pessoa ou equipa designada para tratar</li>
-                    <li><strong>Prazo:</strong> Definir tempo máximo de resposta (ex.: 48h)</li>
-                    <li><strong>Resolução:</strong> Proposta de solução e acordo com o cliente</li>
-                    <li><strong>Arquivo e análise:</strong> Base de dados para identificar padrões</li>
-                </ol>
+                <h3>Como Estruturar um Processo Interno</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📝 Registo</h4>
+                        <p>Todas as reclamações devem ser registadas num sistema (físico ou digital): data, identificação do cliente, motivo detalhado, contacto, gravidade (baixa, média, alta), estado da reclamação.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏷️ Categorização</h4>
+                        <p>Organizar por categorias para facilitar análise posterior: instalações (limpeza, temperatura, espaço), atendimento (simpatia, eficiência), faturação (valores, cobranças), equipamentos (avariados, insuficientes), horários, segurança, comunicação.</p>
+                    </div>
+                    <div class="card">
+                        <h4>👤 Responsável</h4>
+                        <p>Cada reclamação deve ter um responsável designado para tratar e acompanhar. Pode ser a pessoa que atendeu, um supervisor ou um departamento específico conforme a natureza da reclamação.</p>
+                    </div>
+                    <div class="card">
+                        <h4>⏰ Prazo</h4>
+                        <p>Definir tempo máximo de resposta conforme a gravidade: 24h para reclamações urgentes/graves, 48h para reclamações médias, 5 dias úteis para reclamações simples. Comunicar o prazo ao cliente.</p>
+                    </div>
+                    <div class="card">
+                        <h4>✅ Resolução</h4>
+                        <p>Proposta de solução, negociação com o cliente, acordo final. Documentar todo o processo: o que foi decidido, quem autorizou, prazos de implementação. Garantir que a solução é executada.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📊 Arquivo e análise</h4>
+                        <p>Base de dados para registo histórico. Análise periódica (mensal/trimestral) para identificar padrões, causas recorrentes, tendências. Esta análise é fundamental para a melhoria contínua e prevenção de futuras reclamações.</p>
+                    </div>
+                </div>
 
-                <h3>⏰ Importância do Tempo de Resposta</h3>
-                <p>Quanto mais rápido for o retorno ao cliente, maior a probabilidade de o fidelizar. Um cliente ignorado é um cliente perdido.</p>
+                <div class="highlight-box">
+                    <h4>⏰ Importância do Tempo de Resposta</h4>
+                    <p>Quanto mais rápido for o retorno ao cliente, maior a probabilidade de o fidelizar. Um cliente ignorado é um cliente perdido. Estatísticas mostram que 70% dos clientes voltam a fazer negócio se a reclamação for resolvida rapidamente. Se a resolução for lenta, a probabilidade cai para menos de 30%. O tempo de resposta é tão importante quanto a solução em si.</p>
+                </div>
+
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>📊 Criação de Fluxograma</strong>
+                            Desenhar o processo de reclamação para um ginásio fictício: desde o momento em que o cliente apresenta a reclamação (presencial, telefone, livro) até à resolução, arquivo e análise. Incluir decisões (se tem autonomia ou precisa de supervisor), prazos, responsáveis.
+                        </li>
+                        <li>
+                            <strong>🎬 Identificação de Erros em Vídeos</strong>
+                            Analisar vídeos ou diálogos simulados de atendimento e identificar os erros cometidos no processo de gestão da reclamação: falhas no registo, categorização errada, ausência de responsável, prazos não cumpridos, falta de acompanhamento.
+                        </li>
+                        <li>
+                            <strong>👥 Trabalho de Grupo</strong>
+                            Proposta de procedimentos internos para um clube desportivo: criar um manual de procedimentos (quem faz o quê, quando e como), templates de registo de reclamações (ficha padrão), definição de prazos por tipo de reclamação, responsabilidades por departamento.
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Aba Erros a Evitar -->
+            <!-- ABA ERROS -->
             <div id="erros" class="tab-pane">
                 <h2>❌ Erros a Evitar</h2>
+                <p class="badge">⚠️ Falhas comuns no tratamento de reclamações</p>
                 
                 <div class="card-grid">
                     <div class="card">
                         <h4>🚫 Ignorar</h4>
-                        <p>Não dar atenção à reclamação ou demorar demasiado a responder.</p>
+                        <p><strong>O erro:</strong> Não dar atenção à reclamação, demorar a responder, fingir que o problema não existe, arquivar sem tratar.</p>
+                        <p><strong>Consequência:</strong> Cliente sente-se desvalorizado, ignorado e humilhado. Procura a concorrência e partilha a má experiência com outros (mau marketing).</p>
+                        <p><strong>Alternativa:</strong> Responder sempre, mesmo que seja apenas para acusar a receção e informar que está a ser tratado.</p>
                     </div>
                     <div class="card">
                         <h4>🗣️ Justificar-se em excesso</h4>
-                        <p>Focar-se nas desculpas em vez de apresentar soluções.</p>
+                        <p><strong>O erro:</strong> Focar-se nas desculpas em vez de apresentar soluções. "Não foi por minha culpa...", "Isso é normal porque...", "A culpa não é nossa..."</p>
+                        <p><strong>Consequência:</strong> Cliente sente que não há responsabilidade, que estão a dar desculpas esfarrapadas. Agrava a frustração.</p>
+                        <p><strong>Alternativa:</strong> Assumir, pedir desculpa de forma breve e focar na solução. "Peço desculpa pelo sucedido. Vamos já tratar de resolver."</p>
                     </div>
                     <div class="card">
                         <h4>⚡ Discutir com o cliente</h4>
-                        <p>Entrar em confronto direto, agravando a situação.</p>
+                        <p><strong>O erro:</strong> Entrar em confronto direto, responder com agressividade, contradizer o cliente, dizer que ele está errado.</p>
+                        <p><strong>Consequência:</strong> Escalada do conflito, situação fica incontrolável, dano irreparável à imagem da organização.</p>
+                        <p><strong>Alternativa:</strong> Manter a calma, não levar para o pessoal, usar técnicas de desescalada. "Compreendo a sua perspetiva, deixe-me ver como podemos resolver."</p>
                     </div>
                     <div class="card">
                         <h4>🤷 Não acompanhar</h4>
-                        <p>Resolver e não verificar se o cliente ficou satisfeito.</p>
+                        <p><strong>O erro:</strong> Resolver a reclamação e não verificar se o cliente ficou satisfeito. "Problema resolvido, caso encerrado."</p>
+                        <p><strong>Consequência:</strong> Perda de oportunidade de fidelização. O cliente pode até nem ter ficado satisfeito com a solução e não voltar.</p>
+                        <p><strong>Alternativa:</strong> Contactar o cliente dias depois para confirmar que está tudo bem. Isto demonstra preocupação genuína e aumenta a fidelização.</p>
                     </div>
+                </div>
+
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>🎬 Identificação de Erros em Vídeos</strong>
+                            Visualizar cenas de atendimento (reais ou simuladas) e identificar todos os erros cometidos: ignorar, justificar-se, discutir, não acompanhar. Discutir em grupo o impacto de cada erro. Propor alternativas corretas e mais eficazes para cada situação.
+                        </li>
+                        <li>
+                            <strong>🔍 Análise de Casos</strong>
+                            Estudar casos reais (ou criados) onde os erros mais frequentes estão presentes. Cada grupo analisa um caso diferente e apresenta: erros identificados, consequências, como deveria ter sido feito corretamente.
+                        </li>
+                        <li>
+                            <strong>🔄 Role-play: Correção de Erros</strong>
+                            Simular situações com erros (cliente agressivo, funcionário que discute, etc.) e depois refazer corretamente. Praticar a transformação de uma má experiência numa oportunidade de fidelização. Aplicar as técnicas corretas de comunicação.
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Aba Legislação -->
+            <!-- ABA LEGISLAÇÃO -->
             <div id="legislacao" class="tab-pane">
                 <h2>⚖️ Legislação Aplicável</h2>
+                <p class="badge">📚 Livro de Reclamações e obrigações legais</p>
                 
-                <h3>📚 Livro de Reclamações</h3>
-                <p>O Livro de Reclamações é um instrumento obrigatório em estabelecimentos que prestam serviços ao público. Deve estar sempre disponível e ser de fácil acesso.</p>
-                <ul>
-                    <li><strong>Físico:</strong> Em papel, numerado e autenticado</li>
-                    <li><strong>Eletrónico:</strong> Plataforma online (livroreclamacoes.pt)</li>
-                </ul>
-                <p><strong>Procedimento:</strong> Entregar o livro ao cliente, não interferir no preenchimento, enviar cópia à entidade fiscalizadora no prazo legal.</p>
+                <div class="highlight-box">
+                    <h4>📚 Livro de Reclamações</h4>
+                    <p>Instrumento obrigatório em estabelecimentos que prestam serviços ao público. Deve estar sempre disponível e ser de fácil acesso, em local visível com o respetivo aviso. A sua inexistência ou indisponibilidade constitui contraordenação.</p>
+                    <ul>
+                        <li><strong>Físico:</strong> Em papel, numerado e autenticado pela entidade competente (ASAE, DGES, etc.). Deve ter termos de abertura e encerramento.</li>
+                        <li><strong>Eletrónico:</strong> Plataforma online (livroreclamacoes.pt) - obrigatório para muitas entidades, especialmente as que têm site ou presença online. Mais prático e ecológico.</li>
+                    </ul>
+                    <p><strong>Procedimento correto:</strong> Entregar o livro ao cliente sem questionar, não interferir no preenchimento (não ditar o que escrever), não coagir, enviar cópia à entidade fiscalizadora no prazo legal (10 dias úteis) e guardar o duplicado. A não comunicação da reclamação à entidade é também punível.</p>
+                </div>
 
                 <h3>📊 Registo e Análise</h3>
-                <p>Criar uma base de dados para registar todas as reclamações, categorizando-as. Esta análise permite identificar áreas problemáticas e agir preventivamente.</p>
+                <p>Criar uma base de dados para registar todas as reclamações, categorizando-as por tipo, gravidade, departamento. Esta análise permite identificar áreas problemáticas, tendências e agir preventivamente. O tratamento estatístico das reclamações é fundamental para a melhoria contínua e para a tomada de decisões estratégicas.</p>
+                <p><strong>O que analisar:</strong> volume por mês, tipos mais comuns, departamentos com mais reclamações, tempo médio de resolução, satisfação com a resolução.</p>
+
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>📝 Preenchimento Simulado do Livro de Reclamações</strong>
+                            Praticar o preenchimento correto do livro físico (cada aluno preenche uma reclamação simulada) e simular o acesso à plataforma eletrónica (livroreclamacoes.pt). Entender os campos obrigatórios: identificação, factos, data, assinatura. Discutir os procedimentos após preenchimento.
+                        </li>
+                        <li>
+                            <strong>📈 Construção de um Mini Plano de Melhoria</strong>
+                            Para uma escola desportiva: analisar reclamações típicas (instalações, horários, equipamentos, atendimento) e propor ações concretas de melhoria. Definir prazos, responsáveis e indicadores de sucesso. Apresentar à turma.
+                        </li>
+                        <li>
+                            <strong>💬 Debate</strong>
+                            "Cliente satisfeito vs cliente fidelizado" - Discussão aprofundada sobre as diferenças entre um cliente que fica satisfeito com a resolução de uma reclamação e um cliente que se torna fiel à marca. Como transformar satisfação em fidelização? Que estratégias usar?
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Aba Fidelização -->
+            <!-- ABA FIDELIZAÇÃO -->
             <div id="fidelizacao" class="tab-pane">
                 <h2>❤️ Fidelização do Cliente</h2>
+                <p class="badge">🌟 Transformar reclamações em oportunidades</p>
                 
-                <h3>📈 Transformar Reclamações em Oportunidades</h3>
+                <h3>📈 Processo de Melhoria Contínua</h3>
                 <ol>
-                    <li>Recolher e analisar dados das reclamações</li>
-                    <li>Identificar causas recorrentes</li>
-                    <li>Definir ações corretivas</li>
-                    <li>Implementar mudanças</li>
-                    <li>Comunicar as melhorias aos clientes</li>
-                    <li>Monitorizar resultados</li>
+                    <li><strong>Recolher e analisar</strong> dados das reclamações (quantidade, tipos, causas)</li>
+                    <li><strong>Identificar</strong> causas recorrentes e padrões (problemas sistémicos)</li>
+                    <li><strong>Definir</strong> ações corretivas prioritárias (o que fazer, quando, quem)</li>
+                    <li><strong>Implementar</strong> mudanças nos processos, formação, equipamentos, instalações</li>
+                    <li><strong>Comunicar</strong> as melhorias aos clientes (mostrar que foram ouvidos)</li>
+                    <li><strong>Monitorizar</strong> resultados e ajustar o que não funcionou</li>
                 </ol>
 
                 <h3>🌟 Estratégias de Fidelização</h3>
-                <ul>
-                    <li><strong>Atendimento personalizado:</strong> Conhecer o cliente pelo nome e histórico</li>
-                    <li><strong>Surpreender positivamente:</strong> Oferecer um brinde ou desconto após uma reclamação bem resolvida</li>
-                    <li><strong>Comunicação pós-resolução:</strong> Contactar para saber se está tudo bem</li>
-                    <li><strong>Programas de fidelização:</strong> Descontos em mensalidades, acesso a eventos exclusivos</li>
-                </ul>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🎯 Atendimento personalizado</h4>
+                        <p>Conhecer o cliente pelo nome, histórico de reclamações e preferências. Tratar cada cliente como único, adaptando a comunicação ao seu perfil. Clientes gostam de se sentir reconhecidos.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎁 Surpreender positivamente</h4>
+                        <p>Oferecer um brinde, desconto na próxima mensalidade, acesso a um evento especial ou outro benefício após uma reclamação bem resolvida. Transformar uma experiência negativa numa memória positiva.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📞 Comunicação pós-resolução</h4>
+                        <p>Contactar o cliente dias depois (telefone, email) para saber se está tudo bem e se a solução foi eficaz. Isto demonstra preocupação genuína e não apenas cumprimento de obrigação. Aumenta a confiança.</p>
+                    </div>
+                    <div class="card">
+                        <h4>💳 Programas de fidelização</h4>
+                        <p>Descontos em mensalidades para clientes antigos, acesso a eventos exclusivos, ofertas especiais em aniversários, convites para experimentar novos serviços. Recompensar a permanência.</p>
+                    </div>
+                </div>
+
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>📈 Construção de um Mini Plano de Melhoria</strong>
+                            Para uma escola desportiva: criar um plano detalhado com ações de melhoria baseadas em reclamações típicas. Incluir: problema identificado, causa, ação corretiva, prazo, responsável, como comunicar ao cliente, como medir o sucesso.
+                        </li>
+                        <li>
+                            <strong>💬 Debate</strong>
+                            "Cliente satisfeito vs cliente fidelizado" - Discussão aprofundada sobre as diferenças. O que leva um cliente a ser apenas satisfeito? O que leva à verdadeira fidelização? Estratégias práticas para evoluir de um para outro. Exemplos reais.
+                        </li>
+                        <li>
+                            <strong>🎭 Simulação</strong>
+                            Como fidelizar um cliente após uma reclamação grave. Cenário: cliente que teve uma experiência muito negativa (ex.: cobrança indevida durante meses, equipamento que causou lesão). Praticar o processo de recuperação: pedido de desculpas, compensação, acompanhamento, oferta surpresa. Transformar a experiência.
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Aba Conflito e Stress -->
+            <!-- ABA CONFLITO -->
             <div id="conflito" class="tab-pane">
                 <h2>⚡ Conflito e Stress</h2>
+                <p class="badge">🧘 Técnicas de controlo emocional</p>
                 
-                <h3>🛡️ Técnicas de Controlo de Conflitos</h3>
-                <ul>
-                    <li><strong>Manter a calma:</strong> Respirar fundo, controlar a voz</li>
-                    <li><strong>Não levar para o pessoal:</strong> A raiva do cliente não é contra si</li>
-                    <li><strong>Usar linguagem positiva:</strong> "Vamos encontrar uma solução" em vez de "Isso não é possível"</li>
-                    <li><strong>Dar opções:</strong> Oferecer alternativas para o cliente se sentir no controlo</li>
-                    <li><strong>Saber quando pedir ajuda:</strong> Chamar um supervisor se necessário</li>
-                </ul>
-
-                <h3>🧘 Gestão do Stress</h3>
                 <div class="card-grid">
                     <div class="card">
-                        <h4>🔹 Técnicas rápidas</h4>
+                        <h4>🛡️ Técnicas de Controlo de Conflitos</h4>
                         <ul>
-                            <li>Respiração profunda (4-4-4)</li>
-                            <li>Pausa mental de 5 segundos</li>
-                            <li>Alongamento discreto</li>
+                            <li><strong>Manter a calma:</strong> Respirar fundo (técnica 4-4-4), controlar o tom de voz, não responder com agressividade</li>
+                            <li><strong>Não levar para o pessoal:</strong> A raiva do cliente não é contra si, é contra a situação ou a organização</li>
+                            <li><strong>Linguagem positiva:</strong> "Vamos encontrar uma solução", "Estou aqui para ajudar"</li>
+                            <li><strong>Dar opções:</strong> Oferecer alternativas para o cliente se sentir no controlo da situação</li>
+                            <li><strong>Saber pedir ajuda:</strong> Chamar um supervisor se sentir que não consegue gerir a situação sozinho</li>
+                            <li><strong>Desescalada:</strong> Baixar o tom de voz, usar frases de validação, dar espaço físico</li>
                         </ul>
                     </div>
                     <div class="card">
-                        <h4>🔹 Preparação emocional</h4>
+                        <h4>🧘 Gestão do Stress</h4>
                         <ul>
-                            <li>Autoconhecimento</li>
-                            <li>Treino de simulações</li>
-                            <li>Apoio da equipa</li>
+                            <li><strong>Técnicas rápidas durante o atendimento:</strong> Respiração profunda (inspirar 4s, segurar 4s, expirar 4s), pausa mental de 5 segundos, alongamento discreto, aperto/relaxamento dos punhos</li>
+                            <li><strong>Preparação emocional:</strong> Autoconhecimento (saber o que o stressa), treino de simulações, preparação mental antes do turno</li>
+                            <li><strong>Apoio da equipa:</strong> Partilhar experiências difíceis, pedir feedback, apoiar colegas</li>
+                            <li><strong>Pós-atendimento:</strong> Descompressão (beber água, alongar), não levar o stress para casa, separar o profissional do pessoal</li>
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Aba Projeto Final -->
-            <div id="projeto" class="tab-pane">
-                <h2>🎯 Projeto Final</h2>
-                
-                <div class="highlight-box">
-                    <h3>📋 Plano de Gestão de Reclamações</h3>
-                    <p>Para uma entidade desportiva (clube, ginásio ou evento), incluindo:</p>
+                <!-- ATIVIDADES PRÁTICAS -->
+                <div class="atividades-box">
+                    <h4>🎭 Atividades Práticas</h4>
+                    <ul>
+                        <li>
+                            <strong>🧘 Técnicas Rápidas de Controlo do Stress</strong>
+                            Exercícios práticos em grupo: respiração diafragmática (colocar mão na barriga e sentir o movimento), relaxamento progressivo (tensionar e relaxar grupos musculares), visualização positiva (imaginar um local calmo), grounding techniques (5 coisas que vê, 4 que toca, 3 que ouve, 2 que cheira, 1 que saboreia).
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="card-grid">
-                    <div class="card">
-                        <h4>📌 Tipos de reclamações</h4>
-                        <p>Identificar as reclamações mais comuns para essa entidade.</p>
-                    </div>
-                    <div class="card">
-                        <h4>⚙️ Procedimentos</h4>
-                        <p>Definir passo a passo como a reclamação é acolhida, registada e resolvida.</p>
-                    </div>
-                    <div class="card">
-                        <h4>💬 Formas de comunicação</h4>
-                        <p>Canais disponíveis (presencial, telefone, e-mail, livro de reclamações).</p>
-                    </div>
-                    <div class="card">
-                        <h4>📝 Registo</h4>
-                        <p>Criar um modelo de ficha de registo de reclamações.</p>
-                    </div>
-                    <div class="card">
-                        <h4>📈 Medidas de melhoria</h4>
-                        <p>Propor ações concretas para evitar que as reclamações se repitam.</p>
-                    </div>
+                <!-- SIMULAÇÃO DE CRISE -->
+                <div class="simulacao-box">
+                    <h4>⚠️ Simulação de Situação de Crise</h4>
+                    <p><strong>Cenário:</strong> Cancelamento de última hora de um treino ou prova desportiva importante devido a condições meteorológicas adversas, problemas de segurança, avaria grave de equipamentos ou falha de energia.</p>
+                    <p><strong>Contexto:</strong> 50 atletas já estão no local, alguns viajaram de longe, há crianças e pais frustrados, alguns estão irritados e agressivos.</p>
+                    <ul>
+                        <li><strong>Como comunicar a má notícia aos clientes?</strong> Quem deve comunicar? Em que formato (grupo, individual)? Que canais usar (altifalantes, contacto pessoal, redes sociais)? Qual o discurso a adotar?</li>
+                        <li><strong>Como gerir a insatisfação e a frustração?</strong> Técnicas de acalmia para clientes agressivos, validação de emoções, como lidar com grupos, como manter a ordem.</li>
+                        <li><strong>Que soluções alternativas apresentar?</strong> Reagendamento imediato, compensações (descontos, ofertas), transporte de volta, contacto com encarregados de educação.</li>
+                        <li><strong>Como transformar uma experiência negativa numa oportunidade?</strong> Follow-up no dia seguinte, ofertas especiais para quem estava presente, pedido de feedback, demonstração de que a segurança foi a prioridade.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Aba Autor -->
+            <!-- ABA AUTOR -->
             <div id="autor" class="tab-pane">
                 <h2>👤 Autor</h2>
                 
@@ -547,13 +1061,13 @@
                     <div class="author-info">
                         <h3>Telmo Carvalho</h3>
                         <p><strong>Nº 11 | 12ºGD</strong></p>
-                        <p>Design e Desenvolvimento Web</p>
-                        <p>Responsável pela criação deste site interativo e organização dos conteúdos sobre Gestão e Tratamento das Reclamações.</p>
-                        <p style="margin-top: 15px;"><em>🔹 Trabalho desenvolvido no âmbito da UFCD 7266, sob orientação da professora Conceição Menezes, na Escola Secundária António Nobre.</em></p>
+                        <p>Responsável pela criação deste site interativo e organização dos conteúdos sobre Gestão e Tratamento das Reclamações, no âmbito da UFCD 7266.</p>
+                        <p>Trabalho desenvolvido com pesquisa aprofundada dos conteúdos programáticos, aplicação de técnicas de comunicação visual e desenvolvimento web.</p>
+                        <em>🔹 Trabalho realizado sob orientação da professora Conceição Menezes, na Escola Secundária António Nobre, para a disciplina de Gestão e Tratamento das Reclamações.</em>
                     </div>
                 </div>
 
-                <p style="text-align: right; margin-top: 50px; font-style: italic; color: #2c3e50;">Data de conclusão: Fevereiro de 2026</p>
+                <p style="text-align: right; margin-top: 50px; font-style: italic; color: #2c3e50; font-size: 1.1em;">📅 Data de conclusão: Fevereiro de 2026</p>
             </div>
         </div>
     </div>
